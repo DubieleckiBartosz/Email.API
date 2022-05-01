@@ -26,7 +26,7 @@ namespace Email.Infrastructure.Repositories
         public async Task<bool> SendEmailAsync(Application.Models.Email email)
         {
             var mailMessage = new MimeMessage();
-            mailMessage.From.Add(new MailboxAddress(_emailSettings.FromName, _emailSettings.FromAddress));
+            mailMessage.From.Add(new MailboxAddress(email.ServiceName ?? _emailSettings.FromName, _emailSettings.FromAddress));
             mailMessage.To.Add(MailboxAddress.Parse(email.To));
             mailMessage.Subject = email.Subject;
             mailMessage.Body = new TextPart(TextFormat.Html) { Text = email.Body };

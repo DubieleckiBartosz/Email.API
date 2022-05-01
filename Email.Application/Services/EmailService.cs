@@ -36,18 +36,19 @@ namespace Email.Application.Services
                            throw new ArgumentNullException(TempStrings.TemplateDoesNotExist);
 
             var readyTemplate = template.TemplateContent.GetTemplateReplaceData(emailData.DictionaryData);
-            emailData.Recipients.ForEach(x => SendEmail(x, readyTemplate, emailData.SubjectMail));
+            emailData.Recipients.ForEach(x => SendEmail(x, readyTemplate, emailData.SubjectMail, emailData.ServiceName));
             return true;
 
         }
 
-        private void SendEmail(string to, string body, string subject)
+        private void SendEmail(string to, string body, string subject, string serviceName)
         {
             var email = new Models.Email
             {
                 To = to,
                 Body = body,
-                Subject = subject
+                Subject = subject,
+                ServiceName = serviceName
             };
             _backgroundJobClient.Enqueue(() => _emailService.SendEmailAsync(email));
         }
