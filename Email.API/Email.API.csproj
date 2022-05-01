@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+	  <UserSecretsId>aef891f3-090a-4dd6-8b71-76510af3ac78</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Email.Application\Email.Application.csproj" />
+    <ProjectReference Include="..\Email.Infrastructure\Email.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
